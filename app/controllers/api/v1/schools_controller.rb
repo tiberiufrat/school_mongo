@@ -2,7 +2,7 @@ module Api
   module V1
     class SchoolsController < ApplicationController
       before_action :set_school, only: %i[show update destroy]
-      before_action :authorize_access_request!, except: [:show, :index] # authorise the user before accessing this controller
+      before_action :authorize_access_request!, except: %i[show index] # authorise the user before accessing this controller
 
       # GET /schools
       def index
@@ -21,7 +21,7 @@ module Api
         @school = School.new(school_params)
 
         if @school.save
-          render json: @school, status: :created, location: @school
+          render json: @school, status: :created
         else
           render json: @school.errors, status: :unprocessable_entity
         end
