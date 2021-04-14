@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'refresh/create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
@@ -8,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   post 'refresh', controller: :refresh, action: :create
-  post 'signin', controller: :signin, action: :create
-  post 'signup', controller: :signup, action: :create
-  delete 'signin', controller: :signin, action: :destroy
+  post 'sign_in', controller: :sign_in, action: :create
+  post 'sign_up', controller: :sign_up, action: :create
+  delete 'sign_in', controller: :sign_in, action: :destroy
 end

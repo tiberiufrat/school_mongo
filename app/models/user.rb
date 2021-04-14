@@ -1,7 +1,11 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActiveModel::SecurePassword
+  
   field :email, type: String
+  # field :password, type: String
+  # field :password_confirmation, type: String
   field :password_digest, type: String
   field :sign_in_count, type: Integer, default: 0
   field :previous_sign_ins, type: Array, default: []
@@ -16,9 +20,12 @@ class User
 	field :newsletter, type: Boolean, default: true
 	field :active, type: Boolean, default: true
 
-  belongs_to :profile, polymorphic: true
+  # belongs_to :profile, polymorphic: true
 
-  validates_presence_of :email, :password_digest, :first_name, :last_name
+  # validates :email, presence: true
+  # validates :password_digest, presence: true
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
 
   has_secure_password
 end

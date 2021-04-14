@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/mongodb/mongoid.git
-  revision: b1d5e3fb1816c0b179b62ebf830f403c2866dfb5
-  branch: master
+  revision: 4fce48955330916142479af39438e7100ec8bdc3
+  branch: 7.2-stable
   specs:
-    mongoid (7.3.0.alpha)
+    mongoid (7.2.2)
       activemodel (>= 5.1, < 6.2)
       mongo (>= 2.10.5, < 3.0.0)
 
@@ -97,11 +97,15 @@ GEM
     marcel (1.0.1)
     method_source (1.0.0)
     mini_mime (1.0.3)
+    mini_portile2 (2.5.0)
     minitest (5.14.4)
     mongo (2.14.0)
       bson (>= 4.8.2, < 5.0.0)
     msgpack (1.4.2)
     nio4r (2.5.7)
+    nokogiri (1.11.3)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.3-x86_64-linux)
       racc (~> 1.4)
     puma (5.2.2)
@@ -160,6 +164,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -177,7 +182,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.2.3

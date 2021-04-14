@@ -7,8 +7,10 @@ class School
   field :country, type: String
   field :city, type: String
   field :address, type: String
-  field :registration_code, type: String
-  field :settings, type: Hash, default: {}
+  # field :registration_code, type: String
+  # field :settings, type: Hash, default: {}
 
-  validates_presence_of :name, :email, :phone, :country, :city, :address
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :phone, presence: true
 end
