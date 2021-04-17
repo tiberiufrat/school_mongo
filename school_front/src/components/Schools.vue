@@ -80,67 +80,67 @@
 
 <script>
 export default {
-  name: "Schools",
-  data() {
+  name: 'Schools',
+  data () {
     return {
       schools: [],
       newSchool: [],
-      error: "",
-      editedSchool: "",
-    };
+      error: '',
+      editedSchool: ''
+    }
   },
-  created() {
+  created () {
     if (!localStorage.signedIn) {
-      this.$router.replace("/sign_in");
+      this.$router.replace('/sign_in')
     } else {
       this.$http.secured
-        .get("/api/v1/schools")
+        .get('/api/v1/schools')
         .then((response) => {
-          this.schools = response.data;
+          this.schools = response.data
         })
-        .catch((error) => this.setError(error, "Something went wrong"));
-      console.log(this.schools);
+        .catch((error) => this.setError(error, 'Something went wrong'))
+      console.log(this.schools)
     }
   },
   methods: {
-    setError(error, text) {
+    setError (error, text) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
-        text;
+        text
     },
-    addSchool() {
-      const value = this.newSchool;
+    addSchool () {
+      const value = this.newSchool
       if (!value) {
-        return;
+        return
       }
       this.$http.secured
-        .post("/api/v1/schools/", { school: { name: this.newSchool.name } })
+        .post('/api/v1/schools/', { school: { name: this.newSchool.name } })
 
         .then((response) => {
-          this.schools.push(response.data);
-          this.newSchool = "";
+          this.schools.push(response.data)
+          this.newSchool = ''
         })
-        .catch((error) => this.setError(error, "Cannot create school"));
+        .catch((error) => this.setError(error, 'Cannot create school'))
     },
-    removeSchool(school) {
+    removeSchool (school) {
       this.$http.secured
         .delete(`/api/v1/schools/${school.id}`)
         .then((response) => {
-          this.schools.splice(this.schools.indexOf(school), 1);
+          this.schools.splice(this.schools.indexOf(school), 1)
         })
-        .catch((error) => this.setError(error, "Cannot delete school"));
+        .catch((error) => this.setError(error, 'Cannot delete school'))
     },
-    editSchool(school) {
-      this.editedSchool = school;
+    editSchool (school) {
+      this.editedSchool = school
     },
-    updateSchool(school) {
-      this.editedSchool = "";
+    updateSchool (school) {
+      this.editedSchool = ''
       this.$http.secured
         .patch(`/api/v1/schools/${school._id.$oid}`, {
-          school: { name: school.name },
+          school: { name: school.name }
         })
-        .catch((error) => this.setError(error, "Cannot update school"));
-    },
-  },
-};
+        .catch((error) => this.setError(error, 'Cannot update school'))
+    }
+  }
+}
 </script>

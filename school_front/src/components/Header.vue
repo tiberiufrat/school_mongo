@@ -53,29 +53,29 @@
 
 <script>
 export default {
-  name: "Header",
-  created() {
-    this.signedIn();
+  name: 'Header',
+  created () {
+    this.signedIn()
   },
   methods: {
-    setError(error, text) {
+    setError (error, text) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
-        text;
+        text
     },
-    signedIn() {
-      return localStorage.signedIn;
+    signedIn () {
+      return localStorage.signedIn
     },
-    signOut() {
+    signOut () {
       this.$http.secured
-        .delete("/sign_in")
+        .delete('/sign_in')
         .then((response) => {
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
-          this.$router.replace("/");
+          delete localStorage.csrf
+          delete localStorage.signedIn
+          this.$router.replace('/')
         })
-        .catch((error) => this.setError(error, "Cannot sign out"));
-    },
-  },
-};
+        .catch((error) => this.setError(error, 'Cannot sign out'))
+    }
+  }
+}
 </script>

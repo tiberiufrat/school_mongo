@@ -55,55 +55,55 @@
 
 <script>
 export default {
-  name: "SignUp",
-  data() {
+  name: 'SignUp',
+  data () {
     return {
-      email: "",
-      password: "",
-      password_confirmation: "",
-      error: "",
-    };
+      email: '',
+      password: '',
+      password_confirmation: '',
+      error: ''
+    }
   },
-  created() {
-    this.checkedSignedIn();
+  created () {
+    this.checkedSignedIn()
   },
-  updated() {
-    this.checkedSignedIn();
+  updated () {
+    this.checkedSignedIn()
   },
   methods: {
-    signup() {
+    signup () {
       this.$http.plain
-        .post("/sign_up", {
+        .post('/sign_up', {
           email: this.email,
           password: this.password,
-          password_confirmation: this.password_confirmation,
+          password_confirmation: this.password_confirmation
         })
         .then((response) => this.signupSuccessful(response))
-        .catch((error) => this.signupFailed(error));
+        .catch((error) => this.signupFailed(error))
     },
-    signupSuccessful(response) {
+    signupSuccessful (response) {
       if (!response.data.csrf) {
-        this.signupFailed(response);
-        return;
+        this.signupFailed(response)
+        return
       }
 
-      localStorage.csrf = response.data.csrf;
-      localStorage.signedIn = true;
-      this.error = "";
-      this.$router.replace("/records");
+      localStorage.csrf = response.data.csrf
+      localStorage.signedIn = true
+      this.error = ''
+      this.$router.replace('/records')
     },
-    signupFailed(error) {
+    signupFailed (error) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
-        "Something went wrong";
-      delete localStorage.csrf;
-      delete localStorage.signedIn;
+        'Something went wrong'
+      delete localStorage.csrf
+      delete localStorage.signedIn
     },
-    checkedSignedIn() {
+    checkedSignedIn () {
       if (localStorage.signedIn) {
-        this.$router.replace("/records");
+        this.$router.replace('/records')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

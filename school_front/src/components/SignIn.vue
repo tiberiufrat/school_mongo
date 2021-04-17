@@ -44,49 +44,49 @@
 
 <script>
 export default {
-  name: "SignIn",
-  data() {
+  name: 'SignIn',
+  data () {
     return {
-      email: "",
-      password: "",
-      error: "",
-    };
+      email: '',
+      password: '',
+      error: ''
+    }
   },
-  created() {
-    this.checkSignedIn();
+  created () {
+    this.checkSignedIn()
   },
-  updated() {
-    this.checkSignedIn();
+  updated () {
+    this.checkSignedIn()
   },
   methods: {
-    signin() {
+    signin () {
       this.$http.plain
-        .post("/sign_in", { email: this.email, password: this.password })
+        .post('/sign_in', { email: this.email, password: this.password })
         .then((response) => this.signinSuccessful(response))
-        .catch((error) => this.signinFailed(error));
+        .catch((error) => this.signinFailed(error))
     },
-    signinSuccessful(response) {
+    signinSuccessful (response) {
       if (!response.data.csrf) {
-        this.signinFailed(response);
-        return;
+        this.signinFailed(response)
+        return
       }
-      localStorage.csrf = response.data.csrf;
-      localStorage.signedIn = true;
-      this.error = "";
-      this.$router.replace("/records");
+      localStorage.csrf = response.data.csrf
+      localStorage.signedIn = true
+      this.error = ''
+      this.$router.replace('/records')
     },
-    signinFailed(error) {
+    signinFailed (error) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
-        "";
-      delete localStorage.csrf;
-      delete localStorage.signedIn;
+        ''
+      delete localStorage.csrf
+      delete localStorage.signedIn
     },
-    checkSignedIn() {
+    checkSignedIn () {
       if (localStorage.signedIn) {
-        this.$router.replace("/records");
+        this.$router.replace('/records')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
