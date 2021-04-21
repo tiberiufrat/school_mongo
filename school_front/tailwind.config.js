@@ -4,14 +4,14 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        128: '32rem',
-      },
-    },
+        128: '32rem'
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
   plugins: [
     require('@tailwindcss/forms')
-  ],
+  ]
 }
